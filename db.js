@@ -12,3 +12,6 @@ mongoose.connection.on('disconnected',()=>{
 mongoose.connection.on('error',(err)=>{
     console.log('Error:',err)
 })
+//mongodb+srv://Oleg:NVdFs1Hh02WrzF8S@cluster0.kiv5u.mongodb.net/sushidb?retryWrites=true&w=majority
+
+//"mongodb://localhost:27017/"
