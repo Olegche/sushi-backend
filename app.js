@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  const openPathes = [ '/users/login', '/users/signup', '/products','/orders','/orders/add' ];
+  const openPathes = ['/', '/users/login', '/users/signup', '/products','/orders','/orders/add' ];
   
   if (!openPathes.includes(req.path)) {
     try {
