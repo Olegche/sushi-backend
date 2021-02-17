@@ -37,7 +37,7 @@ app.use((req, res, next) => {
       console.log("req.headers.authorization");
       console.log(req.headers.authorization);
 
-      // req.user = parseBearer(req.headers.authorization, req.headers);/// here
+      req.user = parseBearer(req.headers.authorization, req.headers);
     } catch (err) {
       return res.status(401).json({ result: "Access Denied test" });
     }
