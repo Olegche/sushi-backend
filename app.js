@@ -30,16 +30,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  const openPathes = ['/', '/users/login', '/users/signup', '/products','/orders','/orders/add' ];
+  const openPathes = ['/', '/products', '/users/login', '/users/signup', ,'/orders','/orders/add' ];
   
   if (!openPathes.includes(req.path)) {
     try {
       console.log("req.headers.authorization");
       console.log(req.headers.authorization);
 
-      req.user = parseBearer(req.headers.authorization, req.headers);
+      // req.user = parseBearer(req.headers.authorization, req.headers);
     } catch (err) {
-      return res.status(401).json({ result: "Access Denied" });
+      return res.status(401).json({ result: "Access Denied test" });
     }
   }
   next();
