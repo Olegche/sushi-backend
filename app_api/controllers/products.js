@@ -108,7 +108,7 @@ module.exports.deleteProduct = function (req, res) {
         if (err)
           return res
             .status(500)
-            .json({ success: false, err: { msg: "Saving faild!" } });
+            .json({ success: false, err: { msg: "Deleting failed!" } });
         res.json({ success: true });
       }); 
     }

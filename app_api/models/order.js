@@ -5,6 +5,7 @@ const {
 
 const order = new Schema({
     userName: String,
+    email: String,
     tel: String, 
     city: String,
     street: String,

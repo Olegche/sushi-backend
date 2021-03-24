@@ -1,5 +1,18 @@
 const mongoose = require('mongoose')
 const Order = require('../models/order')
+//
+const nodemailer = require('nodemailer')
+const sendgrid = require('nodemailer-sendgrid-transport')
+
+const {
+    SENGRID_API_KEY
+} = require('../../config')
+const regEmail = require('../../emails/orderGet')
+const transporter = nodemailer.createTransport(sendgrid({
+    auth: {
+        api_key: SENGRID_API_KEY
+    }
+}))
 
 const sendJSONResponse = (res, status, content) => {
     res.setHeader("Access-Control-Allow-Origin", "*")
@@ -39,7 +52,7 @@ module.exports.getOrderById = function (req, res) {
             })
     }
 }
-module.exports.addOrder = function (req, res) {
+module.exports.addOrder = async function (req, res) {
     if (!req.body || !req.body.userName ) {
         sendJSONResponse(res, 400, {
             message: "No data"
@@ -49,6 +62,7 @@ module.exports.addOrder = function (req, res) {
     const newOrder = new Order({
 
         userName: req.body.userName,
+        email: req.body.email,
         tel: req.body.tel,
         city: req.body.city,
         street: req.body.street,
@@ -66,10 +80,11 @@ module.exports.addOrder = function (req, res) {
 
        
     })
-    newOrder.save((err) => {
+    await newOrder.save((err) => {
         if (err) {
             sendJSONResponse(res, 500, {
-                message: err
+                message: 'err',
+                
             })
             return
         }
@@ -77,6 +92,7 @@ module.exports.addOrder = function (req, res) {
             message: 'added'
         })
     })
+     transporter.sendMail(regEmail(req.body))
 }
 
 
