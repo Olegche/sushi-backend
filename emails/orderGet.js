@@ -18,7 +18,7 @@ module.exports = function(data) {
         <p> Ви не проти, якщо ми матимемо якісь питання то передзвонимо ${data.tel}  ? </p>
         <i> Смачного !</i>
         <hr/>
-        <a href="${BASE_URL}">to Oleg's website</a>
+        <a href="${BASE_URL}">to Oleg's website </a>
         `
     }
 }
