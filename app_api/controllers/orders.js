@@ -52,7 +52,7 @@ module.exports.getOrderById = function (req, res) {
             })
     }
 }
-module.exports.addOrder = async function (req, res) {
+module.exports.addOrder =  function (req, res) {
     if (!req.body || !req.body.userName ) {
         sendJSONResponse(res, 400, {
             message: "No data"
@@ -62,8 +62,8 @@ module.exports.addOrder = async function (req, res) {
     const newOrder = new Order({
 
         userName: req.body.userName,
-        email: req.body.email,
         tel: req.body.tel,
+        email: req.body.email,
         city: req.body.city,
         street: req.body.street,
         category: req.body.category,     
@@ -80,7 +80,7 @@ module.exports.addOrder = async function (req, res) {
 
        
     })
-    await newOrder.save((err) => {
+    newOrder.save((err) => {
         if (err) {
             sendJSONResponse(res, 500, {
                 message: 'err',
